@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ad = require('../models/ad');
 const User = require('../models/user');
+const sendEmail = require('../utils/sendEmail');
 
 // Create an ad request
 router.post('/create', async (req, res, next) => {
@@ -25,13 +26,13 @@ router.post('/create', async (req, res, next) => {
 
     await ad.save();
     
-//     sendEmail('olasubomifemi98@gmail.com', 'New Ad Created', `New Ad Created. Ad ID: ${ad._id},  audience: ${audience},
-//     reach: ${reach},
-//     platform: ${platform},
-// senderId: ${senderId},
-//     adContent: ${adContent},
-//     bill: ${bill},
-//     userId: ${userId},`);
+    sendEmail('olasubomifemi98@gmail.com', 'New Ad Created', `New Ad Created. Ad ID: ${ad._id},  audience: ${audience},
+    reach: ${reach},
+    platform: ${platform},
+senderId: ${senderId},
+    adContent: ${adContent},
+    bill: ${bill},
+    userId: ${userId},`);
     res.status(201).json({ message: 'Ad request created successfully', ad });
   } catch (error) {
     next(error);

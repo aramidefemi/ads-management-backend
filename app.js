@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Add this line
+
 
 var route = require('./route'); // Importing route module
 
@@ -17,6 +19,8 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
+// Use CORS middleware to allow all origins
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

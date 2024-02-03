@@ -1,9 +1,10 @@
 const aws = require('aws-sdk');
+const { awsRegion, awsAccessKeyId, awsSecretAccessKey } = process.env;
 
 const ses = new aws.SES({
-  region: 'your-aws-region',
-  accessKeyId: 'your-aws-access-key-id',
-  secretAccessKey: 'your-aws-secret-access-key',
+  region: awsRegion,
+  accessKeyId: awsAccessKeyId,
+  secretAccessKey: awsSecretAccessKey,
 });
 
 const sendEmail = async (to, subject, message) => {
@@ -17,7 +18,7 @@ const sendEmail = async (to, subject, message) => {
       },
       Subject: { Data: subject },
     },
-    Source: 'your-sender-email',
+    Source: 'olasubomifemi98@gmail.com',
   };
 
   try {
